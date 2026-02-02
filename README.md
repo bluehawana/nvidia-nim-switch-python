@@ -25,13 +25,20 @@ Independent enhancement of NVIDIA NIM proxy with advanced model switching capabi
 
 ### 🔄 Advanced Model Switching
 - Switch between 1,000+ NVIDIA NIM models on-the-fly via API or web interface
+- **⚡ Speed Indicators** - See which models are fast, medium, or slow
+- **Sort by Speed** - Find the fastest models instantly
+- **Filter by Performance** - Show only fast models when you need quick responses
 - Persistent model selection across server restarts
 - No need to manually edit environment variables or restart services
 
 ### 🌐 Web Interface for NVIDIA NIM
 - User-friendly web dashboard for browsing and selecting NVIDIA NIM models
+- **⚡ Speed indicators** - Visual badges showing model performance (Fast/Medium/Slow)
+- **Smart sorting** - Sort by speed, name, provider, or size
+- **Performance filters** - Filter to show only fast models
 - Search functionality to quickly find models
 - Real-time model switching with visual feedback
+- Model size badges (8B, 70B, 480B, etc.)
 
 ### 🔌 NVIDIA NIM RESTful API
 - `GET /v1/models` - List all available NVIDIA NIM models

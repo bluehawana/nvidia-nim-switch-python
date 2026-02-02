@@ -13,6 +13,74 @@ const notificationMessageEl = document.getElementById('notification-message');
 // State
 let allModels = [];
 let currentModel = null;
+let currentSort = 'name';
+let currentSpeedFilter = 'all';
+
+// Model speed categories (based on parameter count and architecture)
+const MODEL_SPEEDS = {
+    // Fast models (< 10B parameters)
+    'fast': [
+        'llama-3.1-8b', 'llama-3.2-1b', 'llama-3.2-3b', 'gemma-2-2b', 'gemma-2-9b',
+        'phi-3', 'qwen2-7b', 'mistral-7b', 'yi-6b', 'deepseek-coder-6.7b'
+    ],
+    // Medium models (10B-30B parameters)
+    'medium': [
+        'llama-3.1-70b', 'mixtral', 'qwen2-72b', 'yi-34b', 'deepseek-v2',
+        'nemotron-70b', 'qwq-32b', 'deepseek-r1-distill-qwen-32b'
+    ],
+    // Slow models (> 30B parameters or complex architectures)
+    'slow': [
+        'llama-3.3-70b', 'qwen3-coder-480b', 'deepseek-v3', 'deepseek-r1'
+    ]
+};
+
+// Determine model speed based on name
+function getModelSpeed(modelId) {
+    const lowerModelId = modelId.toLowerCase();
+    
+    for (const [speed, patterns] of Object.entries(MODEL_SPEEDS)) {
+        if (patterns.some(pattern => lowerModelId.includes(pattern))) {
+            return speed;
+        }
+    }
+    
+    // Default heuristics
+    if (lowerModelId.includes('8b') || lowerModelId.includes('7b') || 
+        lowerModelId.includes('6b') || lowerModelId.includes('3b') ||
+        lowerModelId.includes('2b') || lowerModelId.includes('1b')) {
+        return 'fast';
+    }
+    if (lowerModelId.includes('70b') || lowerModelId.includes('72b') ||
+        lowerModelId.includes('34b') || lowerModelId.includes('32b')) {
+        return 'medium';
+    }
+    if (lowerModelId.includes('480b') || lowerModelId.includes('v3') ||
+        lowerModelId.includes('r1') || lowerModelId.includes('405b')) {
+        return 'slow';
+    }
+    
+    return 'medium'; // Default to medium if unknown
+}
+
+// Get speed emoji and label
+function getSpeedIndicator(speed) {
+    const indicators = {
+        'fast': { emoji: '⚡', label: 'Fast', color: '#10b981' },
+        'medium': { emoji: '🚀', label: 'Medium', color: '#f59e0b' },
+        'slow': { emoji: '🐢', label: 'Slow', color: '#ef4444' }
+    };
+    return indicators[speed] || indicators['medium'];
+}
+
+// Get estimated model size
+function getModelSize(modelId) {
+    const lowerModelId = modelId.toLowerCase();
+    const sizeMatch = lowerModelId.match(/(\d+)b/);
+    if (sizeMatch) {
+        return parseInt(sizeMatch[1]);
+    }
+    return 50; // Default size if unknown
+}
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', async () => {
@@ -20,7 +88,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadModels();
 
     // Set up search functionality
-    modelSearchEl.addEventListener('input', filterModels);
+    modelSearchEl.addEventListener('input', filterAndSortModels);
+    
+    // Set up sort functionality
+    const sortSelect = document.getElementById('sort-select');
+    sortSelect.addEventListener('change', (e) => {
+        currentSort = e.target.value;
+        filterAndSortModels();
+    });
+    
+    // Set up speed filter
+    const speedFilter = document.getElementById('speed-filter');
+    speedFilter.addEventListener('change', (e) => {
+        currentSpeedFilter = e.target.value;
+        filterAndSortModels();
+    });
 });
 
 // Load current model information
@@ -78,14 +160,25 @@ function renderModels(models) {
     const modelsHtml = models.map(model => {
         const isSelected = currentModel && model.id === currentModel.id;
         const selectedClass = isSelected ? 'selected' : '';
-        const ownerInfo = model.owned_by ? `Owned by: ${model.owned_by}` : '';
+        const ownerInfo = model.owned_by ? `${model.owned_by}` : '';
+        
+        // Add speed indicator
+        const speed = getModelSpeed(model.id);
+        const speedInfo = getSpeedIndicator(speed);
+        const size = getModelSize(model.id);
 
         return `
-            <div class="model-item ${selectedClass}" data-model-id="${model.id}">
+            <div class="model-item ${selectedClass}" data-model-id="${model.id}" data-speed="${speed}">
+                <div class="model-header">
+                    <span class="speed-badge" style="background-color: ${speedInfo.color}20; color: ${speedInfo.color}; border: 1px solid ${speedInfo.color}">
+                        ${speedInfo.emoji} ${speedInfo.label}
+                    </span>
+                    <span class="size-badge">${size}B</span>
+                </div>
                 <h3>${model.id}</h3>
                 <p class="model-owner">${ownerInfo}</p>
-                <button class="switch-button" onclick="switchModel('${model.id}')">
-                    ${isSelected ? 'Current Model' : 'Switch to Model'}
+                <button class="switch-button" onclick="switchModel('${model.id}')" ${isSelected ? 'disabled' : ''}>
+                    ${isSelected ? '✓ Current Model' : 'Switch to Model'}
                 </button>
             </div>
         `;
@@ -94,21 +187,74 @@ function renderModels(models) {
     modelsListEl.innerHTML = modelsHtml;
 }
 
-// Filter models based on search input
-function filterModels() {
-    const searchTerm = modelSearchEl.value.toLowerCase();
-
-    if (!searchTerm) {
-        renderModels(allModels);
-        return;
+// Sort models based on selected criteria
+function sortModels(models) {
+    const sorted = [...models];
+    
+    switch (currentSort) {
+        case 'speed':
+            sorted.sort((a, b) => {
+                const speedOrder = { 'fast': 0, 'medium': 1, 'slow': 2 };
+                const speedA = getModelSpeed(a.id);
+                const speedB = getModelSpeed(b.id);
+                return speedOrder[speedA] - speedOrder[speedB];
+            });
+            break;
+        case 'size':
+            sorted.sort((a, b) => getModelSize(a.id) - getModelSize(b.id));
+            break;
+        case 'provider':
+            sorted.sort((a, b) => {
+                const providerA = a.owned_by || '';
+                const providerB = b.owned_by || '';
+                return providerA.localeCompare(providerB);
+            });
+            break;
+        case 'name':
+        default:
+            sorted.sort((a, b) => a.id.localeCompare(b.id));
+            break;
     }
+    
+    return sorted;
+}
 
-    const filteredModels = allModels.filter(model =>
-        model.id.toLowerCase().includes(searchTerm) ||
-        (model.owned_by && model.owned_by.toLowerCase().includes(searchTerm))
-    );
+// Filter models based on search input and speed
+function filterAndSortModels() {
+    const searchTerm = modelSearchEl.value.toLowerCase();
+    
+    let filtered = allModels;
+    
+    // Apply search filter
+    if (searchTerm) {
+        filtered = filtered.filter(model =>
+            model.id.toLowerCase().includes(searchTerm) ||
+            (model.owned_by && model.owned_by.toLowerCase().includes(searchTerm))
+        );
+    }
+    
+    // Apply speed filter
+    if (currentSpeedFilter !== 'all') {
+        filtered = filtered.filter(model => {
+            const speed = getModelSpeed(model.id);
+            if (currentSpeedFilter === 'fast') {
+                return speed === 'fast';
+            } else if (currentSpeedFilter === 'medium') {
+                return speed === 'fast' || speed === 'medium';
+            }
+            return true; // 'slow' shows all
+        });
+    }
+    
+    // Sort filtered models
+    const sorted = sortModels(filtered);
+    
+    renderModels(sorted);
+}
 
-    renderModels(filteredModels);
+// Filter models based on search input (legacy function, now calls filterAndSortModels)
+function filterModels() {
+    filterAndSortModels();
 }
 
 // Switch to a different model
@@ -143,7 +289,7 @@ async function switchModel(modelId) {
         updateCurrentModelDisplay();
 
         // Re-render models to update selection status
-        filterModels();
+        filterAndSortModels();
     } catch (error) {
         showNotification(`Error switching model: ${error.message}`, 'error');
     } finally {

@@ -32,8 +32,28 @@
 
             <section class="models-section">
                 <h2>Available Models</h2>
-                <div class="search-container">
-                    <input type="text" id="model-search" placeholder="Search models...">
+                <div class="controls-container">
+                    <div class="search-container">
+                        <input type="text" id="model-search" placeholder="Search models...">
+                    </div>
+                    <div class="filter-container">
+                        <label for="sort-select">Sort by:</label>
+                        <select id="sort-select">
+                            <option value="name">Name (A-Z)</option>
+                            <option value="speed">Speed (Fastest First)</option>
+                            <option value="provider">Provider</option>
+                            <option value="size">Size (Smallest First)</option>
+                        </select>
+                    </div>
+                    <div class="filter-container">
+                        <label for="speed-filter">Speed:</label>
+                        <select id="speed-filter">
+                            <option value="all">All Models</option>
+                            <option value="fast">⚡ Fast Only</option>
+                            <option value="medium">🚀 Medium+</option>
+                            <option value="slow">🐢 All Speeds</option>
+                        </select>
+                    </div>
                 </div>
                 <div id="models-list" class="models-grid">
                     <p>Loading models...</p>
