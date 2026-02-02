@@ -1,0 +1,17 @@
+{
+    "object": "list",
+    "data": [
+        {
+            "id": "provider/default-model",
+            "object": "model",
+            "created": 1677610602,
+            "owned_by": "provider"
+        },
+        {
+            "id": "provider/advanced-model",
+            "object": "model",
+            "created": 1677610602,
+            "owned_by": "provider"
+        }
+    ]
+}

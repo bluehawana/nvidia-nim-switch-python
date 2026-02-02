@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA NIM Model Switcher</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NVIDIA NIM Model Switcher</h1>
+            <p>Switch between different NVIDIA NIM models easily</p>
+        </header>
+
+        <main>
+            <section class="current-model-section">
+                <h2>Current Model</h2>
+                <div id="current-model" class="model-card current">
+                    <div class="model-info">
+                        <h3 id="current-model-name">Loading...</h3>
+                        <p id="current-model-owner" class="model-owner"></p>
+                    </div>
+                    <div class="model-settings">
+                        <h4>Settings</h4>
+                        <ul id="current-model-settings">
+                            <li>Loading settings...</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="models-section">
+                <h2>Available Models</h2>
+                <div class="search-container">
+                    <input type="text" id="model-search" placeholder="Search models...">
+                </div>
+                <div id="models-list" class="models-grid">
+                    <p>Loading models...</p>
+                </div>
+            </section>
+        </main>
+
+        <div id="notification" class="notification hidden">
+            <span id="notification-message"></span>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

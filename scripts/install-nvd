@@ -1,0 +1,5 @@
+#!/bin/bash
+# One-line installer for cc-nvd
+
+# Download and execute the full installation script
+curl -fsSL https://raw.githubusercontent.com/your-username/cc-nvd/main/install.sh | bash
