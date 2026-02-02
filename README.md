@@ -19,7 +19,7 @@ Independent enhancement of NVIDIA NIM proxy with advanced model switching capabi
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)]()
 [![License](https://img.shields.io/badge/license-MIT-green)]()
 
----
+🌐 **[Try Live Demo](https://models.bluehawana.com)** - Free trial available!
 
 ## 🌟 Enhanced Features
 
