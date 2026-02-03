@@ -321,3 +321,83 @@ modelSearchEl.addEventListener('keypress', (e) => {
         filterModels();
     }
 });
+
+
+// Chat functionality
+const chatOutput = document.getElementById('chat-output');
+const chatInput = document.getElementById('chat-input');
+const clearChatBtn = document.getElementById('clear-chat');
+
+let chatHistory = [];
+
+// Initialize chat
+if (chatInput) {
+    chatInput.addEventListener('keypress', async (e) => {
+        if (e.key === 'Enter' && chatInput.value.trim()) {
+            await sendMessage(chatInput.value.trim());
+            chatInput.value = '';
+        }
+    });
+}
+
+if (clearChatBtn) {
+    clearChatBtn.addEventListener('click', () => {
+        chatHistory = [];
+        chatOutput.innerHTML = '<div class="system-message">Chat cleared. Type your message below.</div>';
+    });
+}
+
+// Send message to API
+async function sendMessage(message) {
+    // Add user message to chat
+    addMessageToChat('user', message);
+    
+    // Add loading indicator
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'chat-message loading-message';
+    loadingDiv.textContent = 'Thinking...';
+    chatOutput.appendChild(loadingDiv);
+    chatOutput.scrollTop = chatOutput.scrollHeight;
+    
+    try {
+        const response = await fetch(`${API_BASE}/v1/messages`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': 'demo',
+                'anthropic-version': '2023-06-01'
+            },
+            body: JSON.stringify({
+                model: currentModel ? currentModel.id : 'meta/llama-3.1-8b-instruct',
+                messages: [{ role: 'user', content: message }],
+                max_tokens: 1024
+            })
+        });
+        
+        // Remove loading indicator
+        loadingDiv.remove();
+        
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error?.message || 'Failed to get response');
+        }
+        
+        const data = await response.json();
+        const assistantMessage = data.content?.[0]?.text || 'No response';
+        
+        addMessageToChat('assistant', assistantMessage);
+        
+    } catch (error) {
+        loadingDiv.remove();
+        addMessageToChat('error', error.message);
+    }
+}
+
+// Add message to chat display
+function addMessageToChat(type, message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message ${type}-message`;
+    messageDiv.textContent = message;
+    chatOutput.appendChild(messageDiv);
+    chatOutput.scrollTop = chatOutput.scrollHeight;
+}
