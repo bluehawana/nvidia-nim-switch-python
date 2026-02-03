@@ -70,7 +70,7 @@ Categories:
 ## 🚀 Ready to Publish
 
 ### GitHub Repository
-**URL**: https://github.com/bluehawana/nvidia-nim-swtich-python
+**URL**: https://github.com/bluehawana/nvidia-nim-switch-python
 
 ### What to Push
 ```bash
@@ -119,7 +119,7 @@ A lightweight proxy that:
 🛠️ Tech Stack:
 Python, FastAPI, NVIDIA NIM API, OpenAI SDK, Pydantic
 
-🔗 GitHub: https://github.com/bluehawana/nvidia-nim-swtich-python
+🔗 GitHub: https://github.com/bluehawana/nvidia-nim-switch-python
 
 Perfect for developers who want to:
 • Test different AI models quickly
@@ -146,7 +146,7 @@ Simple commands:
 All tests passed (23/23) ✅
 Open source and ready to use!
 
-Check it out: https://github.com/bluehawana/nvidia-nim-swtich-python
+Check it out: https://github.com/bluehawana/nvidia-nim-switch-python
 
 #AI #Python #DeveloperTools #OpenSource
 ```

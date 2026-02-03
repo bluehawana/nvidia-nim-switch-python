@@ -35,7 +35,7 @@ Complete guide for deploying NVIDIA NIM Switch to your production domain.
 ssh user@your-vps-ip
 
 # Run deployment script
-curl -fsSL https://raw.githubusercontent.com/bluehawana/nvidia-nim-swtich-python/main/scripts/deploy_vps.sh | bash
+curl -fsSL https://raw.githubusercontent.com/bluehawana/nvidia-nim-switch-python/main/scripts/deploy_vps.sh | bash
 ```
 
 When prompted:
@@ -91,11 +91,11 @@ source ~/.bashrc
 ```bash
 # Clone to /opt
 cd /opt
-sudo git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
-cd nvidia-nim-swtich-python
+sudo git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
+cd nvidia-nim-switch-python
 
 # Set permissions
-sudo chown -R $USER:$USER /opt/nvidia-nim-swtich-python
+sudo chown -R $USER:$USER /opt/nvidia-nim-switch-python
 ```
 
 ### Step 5: Configure Environment
@@ -150,7 +150,7 @@ After=network.target
 Type=simple
 User=www-data
 Group=www-data
-WorkingDirectory=/opt/nvidia-nim-swtich-python
+WorkingDirectory=/opt/nvidia-nim-switch-python
 Environment="PATH=/home/YOUR_USER/.local/bin:/usr/local/bin:/usr/bin:/bin"
 ExecStart=/home/YOUR_USER/.local/bin/uv run python server.py --host 0.0.0.0 --port 8089
 Restart=always
@@ -161,7 +161,7 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/opt/nvidia-nim-swtich-python/config
+ReadWritePaths=/opt/nvidia-nim-switch-python/config
 
 [Install]
 WantedBy=multi-user.target
@@ -367,7 +367,7 @@ sudo journalctl -u nvidia-nim-switch -n 100
 ### Update Application
 
 ```bash
-cd /opt/nvidia-nim-swtich-python
+cd /opt/nvidia-nim-switch-python
 sudo git pull
 uv sync
 sudo systemctl restart nvidia-nim-switch
@@ -393,7 +393,7 @@ NVIDIA_NIM_MAX_TOKENS=2000
 Create a monitoring script:
 
 ```bash
-sudo nano /opt/nvidia-nim-swtich-python/monitor_usage.sh
+sudo nano /opt/nvidia-nim-switch-python/monitor_usage.sh
 ```
 
 ```bash
@@ -431,10 +431,10 @@ free -h | grep Mem
 ```
 
 ```bash
-chmod +x /opt/nvidia-nim-swtich-python/monitor_usage.sh
+chmod +x /opt/nvidia-nim-switch-python/monitor_usage.sh
 
 # Run daily at 9 AM
-(crontab -l 2>/dev/null; echo "0 9 * * * /opt/nvidia-nim-swtich-python/monitor_usage.sh") | crontab -
+(crontab -l 2>/dev/null; echo "0 9 * * * /opt/nvidia-nim-switch-python/monitor_usage.sh") | crontab -
 ```
 
 ---
@@ -509,7 +509,7 @@ Perfect for developers who want to:
 Try the free trial: https://models.bluehawana.com
 
 Built with Python, FastAPI, and NVIDIA NIM API.
-Open source: https://github.com/bluehawana/nvidia-nim-swtich-python
+Open source: https://github.com/bluehawana/nvidia-nim-switch-python
 
 #AI #MachineLearning #Python #FastAPI #NVIDIA
 ```
@@ -545,12 +545,12 @@ Edit `static/index.html`:
 
 ```bash
 # Create update script
-sudo nano /opt/nvidia-nim-swtich-python/update.sh
+sudo nano /opt/nvidia-nim-switch-python/update.sh
 ```
 
 ```bash
 #!/bin/bash
-cd /opt/nvidia-nim-swtich-python
+cd /opt/nvidia-nim-switch-python
 git pull
 uv sync
 sudo systemctl restart nvidia-nim-switch
@@ -560,7 +560,7 @@ sudo systemctl restart nvidia-nim-switch
 
 ```bash
 # Backup .env file
-sudo cp /opt/nvidia-nim-swtich-python/.env /opt/nvidia-nim-swtich-python/.env.backup
+sudo cp /opt/nvidia-nim-switch-python/.env /opt/nvidia-nim-switch-python/.env.backup
 
 # Backup Nginx config
 sudo cp /etc/nginx/sites-available/models.bluehawana.com /etc/nginx/sites-available/models.bluehawana.com.backup

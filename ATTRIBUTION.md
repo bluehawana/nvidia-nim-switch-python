@@ -203,7 +203,7 @@ If any individual or organization (including @Gorden_Sun or @Alishahryar1) belie
 - Needs any clarification
 
 **Please contact us directly:**
-- GitHub Issues: https://github.com/bluehawana/nvidia-nim-swtich-python/issues
+- GitHub Issues: https://github.com/bluehawana/nvidia-nim-switch-python/issues
 - Email: [Your contact email]
 
 We will address concerns **promptly and professionally**. We deeply respect intellectual property and community contributions.
@@ -213,7 +213,7 @@ We will address concerns **promptly and professionally**. We deeply respect inte
 ## 🌐 Resources & Links
 
 ### This Project
-- GitHub: https://github.com/bluehawana/nvidia-nim-swtich-python
+- GitHub: https://github.com/bluehawana/nvidia-nim-switch-python
 - Live Demo: https://models.bluehawana.com
 - Documentation: [docs/](docs/)
 

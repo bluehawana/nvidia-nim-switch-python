@@ -82,8 +82,8 @@ services:
 
 ```bash
 # On your VPS
-git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
-cd nvidia-nim-swtich-python
+git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
+cd nvidia-nim-switch-python
 
 # Create .env file
 echo "NVIDIA_NIM_API_KEY=your_key_here" > .env
@@ -124,11 +124,11 @@ source ~/.bashrc
 ```bash
 # Clone repository
 cd /opt
-sudo git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
-cd nvidia-nim-swtich-python
+sudo git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
+cd nvidia-nim-switch-python
 
 # Set permissions
-sudo chown -R $USER:$USER /opt/nvidia-nim-swtich-python
+sudo chown -R $USER:$USER /opt/nvidia-nim-switch-python
 
 # Install dependencies
 uv sync
@@ -169,8 +169,8 @@ After=network.target
 Type=simple
 User=www-data
 Group=www-data
-WorkingDirectory=/opt/nvidia-nim-swtich-python
-Environment="PATH=/opt/nvidia-nim-swtich-python/.venv/bin:/usr/local/bin:/usr/bin:/bin"
+WorkingDirectory=/opt/nvidia-nim-switch-python
+Environment="PATH=/opt/nvidia-nim-switch-python/.venv/bin:/usr/local/bin:/usr/bin:/bin"
 ExecStart=/usr/local/bin/uv run python server.py --host 0.0.0.0 --port 8089
 Restart=always
 RestartSec=10
@@ -180,7 +180,7 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/opt/nvidia-nim-swtich-python/config
+ReadWritePaths=/opt/nvidia-nim-switch-python/config
 
 [Install]
 WantedBy=multi-user.target
@@ -328,8 +328,8 @@ sudo ufw status
 
 ```bash
 # Secure .env file
-sudo chmod 600 /opt/nvidia-nim-swtich-python/.env
-sudo chown www-data:www-data /opt/nvidia-nim-swtich-python/.env
+sudo chmod 600 /opt/nvidia-nim-switch-python/.env
+sudo chown www-data:www-data /opt/nvidia-nim-switch-python/.env
 ```
 
 ### 3. Rate Limiting (Already in Nginx config)
@@ -368,7 +368,7 @@ auth_basic_user_file /etc/nginx/.htpasswd;
 
 ```bash
 # Create monitoring script
-sudo nano /opt/nvidia-nim-swtich-python/monitor.sh
+sudo nano /opt/nvidia-nim-switch-python/monitor.sh
 ```
 
 ```bash
@@ -396,10 +396,10 @@ fi
 
 ```bash
 # Make executable
-sudo chmod +x /opt/nvidia-nim-swtich-python/monitor.sh
+sudo chmod +x /opt/nvidia-nim-switch-python/monitor.sh
 
 # Add to crontab (run every 5 minutes)
-(crontab -l 2>/dev/null; echo "*/5 * * * * /opt/nvidia-nim-swtich-python/monitor.sh") | crontab -
+(crontab -l 2>/dev/null; echo "*/5 * * * * /opt/nvidia-nim-switch-python/monitor.sh") | crontab -
 ```
 
 ### 2. Log Rotation
@@ -472,7 +472,7 @@ sudo nano /var/www/html/trial.html
     </ul>
     
     <h2>Documentation:</h2>
-    <p><a href="https://github.com/bluehawana/nvidia-nim-swtich-python">GitHub Repository</a></p>
+    <p><a href="https://github.com/bluehawana/nvidia-nim-switch-python">GitHub Repository</a></p>
 </body>
 </html>
 ```
@@ -572,8 +572,8 @@ source ~/.bashrc
 
 # Clone repository
 cd /opt
-sudo git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
-cd nvidia-nim-swtich-python
+sudo git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
+cd nvidia-nim-switch-python
 
 # Setup
 uv sync
@@ -583,7 +583,7 @@ echo ""
 echo "✅ Installation complete!"
 echo ""
 echo "Next steps:"
-echo "1. Edit .env file: sudo nano /opt/nvidia-nim-swtich-python/.env"
+echo "1. Edit .env file: sudo nano /opt/nvidia-nim-switch-python/.env"
 echo "2. Add your NVIDIA_NIM_API_KEY"
 echo "3. Setup systemd service (see VPS_DEPLOYMENT.md)"
 echo "4. Configure Nginx (see VPS_DEPLOYMENT.md)"

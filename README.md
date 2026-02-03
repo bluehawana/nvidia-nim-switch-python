@@ -45,8 +45,8 @@ source ~/.bashrc
 
 # 3. Clone and setup
 cd ~
-git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
-cd nvidia-nim-swtich-python
+git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
+cd nvidia-nim-switch-python
 cp .env.example .env
 nano .env  # Add your NVIDIA API key
 
@@ -69,8 +69,8 @@ nim-start
 
 ```bash
 # 1. Clone
-git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
-cd nvidia-nim-swtich-python
+git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
+cd nvidia-nim-switch-python
 
 # 2. Setup
 cp .env.example .env
@@ -177,7 +177,7 @@ See [ATTRIBUTION.md](ATTRIBUTION.md) for details.
 - **Independent project** - Inspired by cc-nim, built from scratch
 - **Proper attribution** - Full credit to community contributors
 
-Questions? [GitHub Issues](https://github.com/bluehawana/nvidia-nim-swtich-python/issues)
+Questions? [GitHub Issues](https://github.com/bluehawana/nvidia-nim-switch-python/issues)
 
 ---
 

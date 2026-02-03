@@ -134,7 +134,7 @@ Built a proxy that makes AI model switching 60x faster!
 
 Perfect for developers testing different AI models!
 
-🔗 https://github.com/bluehawana/nvidia-nim-swtich-python
+🔗 https://github.com/bluehawana/nvidia-nim-switch-python
 
 #AI #Python #FastAPI #NVIDIA #DeveloperTools #OpenSource #MachineLearning
 ```

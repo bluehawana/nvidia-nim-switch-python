@@ -45,7 +45,7 @@ ssh user@your-vps-ip
 
 ### Step 3: Run Deployment Script
 ```bash
-curl -fsSL https://raw.githubusercontent.com/bluehawana/nvidia-nim-swtich-python/main/scripts/deploy_vps.sh | bash
+curl -fsSL https://raw.githubusercontent.com/bluehawana/nvidia-nim-switch-python/main/scripts/deploy_vps.sh | bash
 ```
 
 When prompted, enter:
@@ -167,7 +167,7 @@ sudo certbot certificates
 
 ### File Permissions
 ```bash
-ls -la /opt/nvidia-nim-swtich-python/.env
+ls -la /opt/nvidia-nim-switch-python/.env
 ```
 - [ ] .env file has restricted permissions (600 or 640)
 - [ ] Owned by appropriate user
@@ -228,7 +228,7 @@ sudo journalctl -u nvidia-nim-switch -n 50
 4. Clear local DNS cache
 
 ### If Rate Limiting Too Strict
-Edit `/opt/nvidia-nim-swtich-python/.env`:
+Edit `/opt/nvidia-nim-switch-python/.env`:
 ```bash
 NVIDIA_NIM_RATE_LIMIT=20  # Increase from 10
 ```
@@ -239,7 +239,7 @@ Then restart: `sudo systemctl restart nvidia-nim-switch`
 ## 📞 Support Contacts
 
 ### Technical Issues
-- GitHub Issues: https://github.com/bluehawana/nvidia-nim-swtich-python/issues
+- GitHub Issues: https://github.com/bluehawana/nvidia-nim-switch-python/issues
 - Documentation: Check docs/ folder
 
 ### Cloudflare Issues

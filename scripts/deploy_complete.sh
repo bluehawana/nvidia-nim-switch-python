@@ -173,7 +173,7 @@ if [ "$ON_VPS" = false ]; then
     echo ""
     echo "Then run this command on the VPS:"
     echo ""
-    echo "curl -fsSL https://raw.githubusercontent.com/bluehawana/nvidia-nim-swtich-python/main/scripts/deploy_vps.sh | bash"
+    echo "curl -fsSL https://raw.githubusercontent.com/bluehawana/nvidia-nim-switch-python/main/scripts/deploy_vps.sh | bash"
     echo ""
     echo "When prompted, use:"
     echo "  Domain: ${FULL_DOMAIN}"
@@ -203,13 +203,13 @@ fi
 
 # Clone repository
 echo "4️⃣  Cloning repository..."
-APP_DIR="/opt/nvidia-nim-swtich-python"
+APP_DIR="/opt/nvidia-nim-switch-python"
 if [ -d "$APP_DIR" ]; then
     cd "$APP_DIR"
     sudo git pull
 else
     cd /opt
-    sudo git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
+    sudo git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
     cd "$APP_DIR"
 fi
 sudo chown -R $USER:$USER "$APP_DIR"

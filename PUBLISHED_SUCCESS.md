@@ -2,7 +2,7 @@
 
 ## ✅ Project Published to GitHub
 
-**Repository**: https://github.com/bluehawana/nvidia-nim-swtich-python
+**Repository**: https://github.com/bluehawana/nvidia-nim-switch-python
 
 **Commit**: db67d71  
 **Date**: February 2, 2026  
@@ -98,7 +98,7 @@ Perfect for developers who want to:
 ✓ Use NVIDIA NIM with existing tools
 ✓ Switch models without breaking flow
 
-🔗 GitHub: https://github.com/bluehawana/nvidia-nim-swtich-python
+🔗 GitHub: https://github.com/bluehawana/nvidia-nim-switch-python
 
 Open source and ready to use!
 
@@ -160,10 +160,10 @@ deep-learning
 ## 📚 Documentation Available
 
 Users can now access:
-- [README.md](https://github.com/bluehawana/nvidia-nim-swtich-python/blob/main/README.md) - Main documentation
-- [Quick Start](https://github.com/bluehawana/nvidia-nim-swtich-python/blob/main/docs/QUICK_START.md) - 5-minute setup
-- [User Guide](https://github.com/bluehawana/nvidia-nim-swtich-python/blob/main/docs/USER_GUIDE.md) - Complete guide
-- [Testing Summary](https://github.com/bluehawana/nvidia-nim-swtich-python/blob/main/docs/TESTING_SUMMARY.md) - Test results
+- [README.md](https://github.com/bluehawana/nvidia-nim-switch-python/blob/main/README.md) - Main documentation
+- [Quick Start](https://github.com/bluehawana/nvidia-nim-switch-python/blob/main/docs/QUICK_START.md) - 5-minute setup
+- [User Guide](https://github.com/bluehawana/nvidia-nim-switch-python/blob/main/docs/USER_GUIDE.md) - Complete guide
+- [Testing Summary](https://github.com/bluehawana/nvidia-nim-switch-python/blob/main/docs/TESTING_SUMMARY.md) - Test results
 
 ---
 
@@ -182,9 +182,9 @@ Your project is now:
 
 ## 🔗 Quick Links
 
-- **Repository**: https://github.com/bluehawana/nvidia-nim-swtich-python
-- **Issues**: https://github.com/bluehawana/nvidia-nim-swtich-python/issues
-- **Discussions**: https://github.com/bluehawana/nvidia-nim-swtich-python/discussions
+- **Repository**: https://github.com/bluehawana/nvidia-nim-switch-python
+- **Issues**: https://github.com/bluehawana/nvidia-nim-switch-python/issues
+- **Discussions**: https://github.com/bluehawana/nvidia-nim-switch-python/discussions
 
 ---
 

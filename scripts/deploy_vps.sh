@@ -71,7 +71,7 @@ fi
 # Clone repository
 echo ""
 echo "4️⃣  Setting up application..."
-APP_DIR="/opt/nvidia-nim-swtich-python"
+APP_DIR="/opt/nvidia-nim-switch-python"
 
 if [ -d "$APP_DIR" ]; then
     print_warning "Directory already exists. Updating..."
@@ -79,7 +79,7 @@ if [ -d "$APP_DIR" ]; then
     sudo git pull
 else
     cd /opt
-    sudo git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
+    sudo git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
     cd "$APP_DIR"
 fi
 

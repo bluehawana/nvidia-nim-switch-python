@@ -17,8 +17,8 @@
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
-cd nvidia-nim-swtich-python
+git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
+cd nvidia-nim-switch-python
 ```
 
 ### Step 2: Install Dependencies
@@ -224,7 +224,7 @@ tail -f server_output.log
 
 ## What's Next?
 
-1. ⭐ Star the repo: https://github.com/bluehawana/nvidia-nim-swtich-python
+1. ⭐ Star the repo: https://github.com/bluehawana/nvidia-nim-switch-python
 2. 🐛 Report issues on GitHub
 3. 💡 Suggest new features
 4. 🤝 Contribute improvements
@@ -236,7 +236,7 @@ tail -f server_output.log
 - 📖 Full docs: [README.md](README.md)
 - 🔧 Model switching: [MODEL_SWITCHING.md](MODEL_SWITCHING.md)
 - 📊 Project status: [PROJECT_STATUS.md](PROJECT_STATUS.md)
-- 🐛 Issues: https://github.com/bluehawana/nvidia-nim-swtich-python/issues
+- 🐛 Issues: https://github.com/bluehawana/nvidia-nim-switch-python/issues
 
 ---
 

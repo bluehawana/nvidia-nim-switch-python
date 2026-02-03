@@ -7,8 +7,8 @@ Use 180+ NVIDIA NIM models with Claude Code. Switch models in 1 second. Works fr
 ## ⚡ Quick Install
 
 ```bash
-git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
-cd nvidia-nim-swtich-python
+git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
+cd nvidia-nim-switch-python
 ./install_global.sh
 source ~/.bashrc
 ```

@@ -3,7 +3,7 @@
 **Date**: February 2, 2026  
 **Platform**: macOS (darwin)  
 **Python**: 3.14.2  
-**Repository**: https://github.com/bluehawana/nvidia-nim-swtich-python
+**Repository**: https://github.com/bluehawana/nvidia-nim-switch-python
 
 ---
 

@@ -2,7 +2,7 @@
 
 ## ✅ Project Successfully Organized & Tested
 
-**Repository**: https://github.com/bluehawana/nvidia-nim-swtich-python
+**Repository**: https://github.com/bluehawana/nvidia-nim-switch-python
 
 ---
 

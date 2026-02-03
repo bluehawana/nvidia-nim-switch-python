@@ -100,10 +100,10 @@ uv --version
 cd ~
 
 # Clone the project
-git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
+git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
 
 # Rename for convenience (optional)
-mv nvidia-nim-swtich-python nvidia-nim
+mv nvidia-nim-switch-python nvidia-nim
 
 # Enter the project
 cd nvidia-nim
@@ -268,8 +268,8 @@ rm -rf /mnt/c/Users/YourName/nvidia-nim
 
 # Clone to Linux home
 cd ~
-git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
-mv nvidia-nim-swtich-python nvidia-nim
+git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
+mv nvidia-nim-switch-python nvidia-nim
 cd nvidia-nim
 ```
 
@@ -328,8 +328,8 @@ cd ~
 rm -rf ~/nvidia-nim
 
 # Re-clone
-git clone https://github.com/bluehawana/nvidia-nim-swtich-python.git
-mv nvidia-nim-swtich-python nvidia-nim
+git clone https://github.com/bluehawana/nvidia-nim-switch-python.git
+mv nvidia-nim-switch-python nvidia-nim
 cd nvidia-nim
 
 # Reconfigure
@@ -503,7 +503,7 @@ Once everything is working:
 
 ## 📞 Need Help?
 
-- GitHub Issues: https://github.com/bluehawana/nvidia-nim-swtich-python/issues
+- GitHub Issues: https://github.com/bluehawana/nvidia-nim-switch-python/issues
 - Check other docs: `docs/` folder
 - WSL Issues: https://github.com/microsoft/WSL/issues
 

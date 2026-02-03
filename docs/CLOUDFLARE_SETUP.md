@@ -172,7 +172,7 @@ curl ifconfig.me
 ssh user@your-vps-ip
 
 # Run deployment
-curl -fsSL https://raw.githubusercontent.com/bluehawana/nvidia-nim-swtich-python/main/scripts/deploy_vps.sh | bash
+curl -fsSL https://raw.githubusercontent.com/bluehawana/nvidia-nim-switch-python/main/scripts/deploy_vps.sh | bash
 ```
 
 When prompted:
@@ -430,7 +430,7 @@ Add custom logic:
 
 ### VPS Issues
 - Check logs: `sudo journalctl -u nvidia-nim-switch -f`
-- GitHub Issues: https://github.com/bluehawana/nvidia-nim-swtich-python/issues
+- GitHub Issues: https://github.com/bluehawana/nvidia-nim-switch-python/issues
 
 ---
 
