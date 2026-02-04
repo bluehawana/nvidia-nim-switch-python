@@ -372,18 +372,35 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             console.log('API Response:', data); // Debug log
             
-            // Handle different response types (text or thinking)
+            // Handle different response types and formats
             let assistantMessage = 'No response';
+            
             if (data.content && data.content.length > 0) {
-                const content = data.content[0];
-                console.log('Content type:', content.type, 'Content:', content); // Debug log
-                if (content.type === 'text') {
-                    assistantMessage = content.text;
-                } else if (content.type === 'thinking') {
-                    assistantMessage = content.thinking;
+                // Try to extract text from any content type
+                for (const content of data.content) {
+                    if (content.text) {
+                        assistantMessage = content.text;
+                        break;
+                    } else if (content.thinking) {
+                        assistantMessage = content.thinking;
+                        break;
+                    } else if (typeof content === 'string') {
+                        assistantMessage = content;
+                        break;
+                    }
                 }
+            } else if (data.message) {
+                // Some models return message directly
+                assistantMessage = data.message;
+            } else if (data.text) {
+                // Some models return text directly
+                assistantMessage = data.text;
+            } else if (data.choices && data.choices[0]?.message?.content) {
+                // OpenAI-style format
+                assistantMessage = data.choices[0].message.content;
             }
             
+            console.log('Extracted message:', assistantMessage); // Debug log
             addMessageToChat('assistant', assistantMessage);
             
         } catch (error) {
