@@ -135,9 +135,9 @@ EOF
 chmod +x "$GLOBAL_BIN/nim-web"
 
 # Create nim-claude command (starts Claude Code with proxy)
-cat > "$GLOBAL_BIN/nim-claude" << EOF
+cat > "$GLOBAL_BIN/nim-claude" << 'EOF'
 #!/bin/bash
-# Start Claude Code with NVIDIA NIM Proxy
+# Start Claude Code with NVIDIA NIM Proxy (FREE)
 
 # Check if server is running
 if ! curl -s http://localhost:8089/health > /dev/null 2>&1; then
@@ -147,16 +147,23 @@ if ! curl -s http://localhost:8089/health > /dev/null 2>&1; then
 fi
 
 # Get current model
-CURRENT_MODEL=\$(curl -s http://localhost:8089/v1/models/current | python3 -c "import sys, json; data = json.load(sys.stdin); print(data['id'])" 2>/dev/null)
-if [ -n "\$CURRENT_MODEL" ]; then
-    echo "📊 Using model: \$CURRENT_MODEL"
+CURRENT_MODEL=$(curl -s http://localhost:8089/v1/models/current | python3 -c "import sys, json; data = json.load(sys.stdin); print(data['id'])" 2>/dev/null)
+if [ -n "$CURRENT_MODEL" ]; then
+    echo "🆓 Using FREE NVIDIA NIM Proxy"
+    echo "📊 Model: $CURRENT_MODEL"
     echo "💡 Switch models: nim-web"
+    echo "💡 Use Anthropic subscription instead: just run 'claude'"
     echo ""
 fi
 
-# Start Claude Code with proxy
-export ANTHROPIC_BASE_URL=http://localhost:8089
-exec claude -dangerously-skip-permissions "\$@"
+# Temporarily override environment for this session only
+# This won't affect your regular 'claude' command
+# Use AUTH_TOKEN which Claude Code prioritizes for API-first mode
+# Add --no-session-persistence to prevent resuming old Anthropic sessions
+env -u ANTHROPIC_API_KEY \
+  ANTHROPIC_BASE_URL=http://localhost:8089 \
+  ANTHROPIC_AUTH_TOKEN="sk-ant-placeholder-for-nvidia-nim-proxy" \
+  claude --dangerously-skip-permissions "$@"
 EOF
 
 chmod +x "$GLOBAL_BIN/nim-claude"
@@ -206,6 +213,46 @@ EOF
 
 chmod +x "$GLOBAL_BIN/nim-switch"
 
+# Create nim-reset command (reset Claude Code cache)
+cat > "$GLOBAL_BIN/nim-reset" << 'EOF'
+#!/bin/bash
+# Reset Claude Code cache for clean proxy connection
+
+echo "🔄 Resetting Claude Code cache..."
+echo ""
+
+# Remove Claude Code configuration cache
+REMOVED=0
+if [ -d ~/.config/claude-code ]; then
+    rm -rf ~/.config/claude-code
+    echo "   ✅ Removed ~/.config/claude-code"
+    REMOVED=1
+fi
+
+# Remove Claude CLI cache  
+if [ -d ~/.claude ]; then
+    rm -rf ~/.claude
+    echo "   ✅ Removed ~/.claude"
+    REMOVED=1
+fi
+
+if [ $REMOVED -eq 0 ]; then
+    echo "   ℹ️  No cache found (already clean)"
+fi
+
+echo ""
+echo "✅ Claude Code cache reset complete!"
+echo ""
+echo "💡 This ensures nim-claude connects to the proxy cleanly"
+echo "💡 Run this if you see 'Sonnet 4.5 · API Usage Billing' instead of your proxy model"
+echo ""
+echo "Next steps:"
+echo "   1. nim-start    # Make sure proxy is running"
+echo "   2. nim-claude   # Start fresh session"
+EOF
+
+chmod +x "$GLOBAL_BIN/nim-reset"
+
 # Add to PATH if not already there
 SHELL_RC=""
 if [ -n "$ZSH_VERSION" ]; then
@@ -236,6 +283,7 @@ echo "   nim-status     - Check server status"
 echo "   nim-web        - Open web interface for model switching"
 echo "   nim-claude     - Start Claude Code with proxy (use from ANY folder!)"
 echo "   nim-switch     - Quick model switch from CLI"
+echo "   nim-reset      - Reset Claude Code cache (fixes connection issues)"
 echo ""
 echo "🚀 Quick start:"
 echo "   1. nim-start              # Start the server"

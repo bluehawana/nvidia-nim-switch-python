@@ -6,10 +6,14 @@ const WORKING_MODELS = [
     'z-ai/glm4.7',
     'minimaxai/minimax-m2.1',
     'meta/llama-3.1-8b-instruct',
+    'meta/llama-3.2-1b-instruct',
     'meta/llama-3.2-3b-instruct',
+    'google/gemma-2-2b-it',
     'google/gemma-2-9b-it',
+    'microsoft/phi-3-mini-128k-instruct',
     'microsoft/phi-3.5-mini-instruct',
     'mistralai/mistral-7b-instruct-v0.3',
+    'qwen/qwen2-7b-instruct',
     'qwen/qwen2.5-7b-instruct'
 ];
 
@@ -137,8 +141,8 @@ async function loadModels() {
         if (!response.ok) throw new Error('Failed to load models');
 
         const data = await response.json();
-        // Filter to only show working models
-        allModels = data.data.filter(model => WORKING_MODELS.includes(model.id));
+        // Show all models - users can test which ones work
+        allModels = data.data;
         renderModels(allModels);
     } catch (error) {
         showNotification(`Error loading models: ${error.message}`, 'error');

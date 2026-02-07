@@ -1,0 +1,14 @@
+Cloudflare Configuration
+========================
+Date: Tue Feb  3 22:39:00 CET 2026
+Domain: models.bluehawana.com
+VPS IP: 94.72.141.71
+Zone ID: dc6d3667561fea082cf9e4237945ee88
+Record ID: 6e4a6a8805bad9b3a08dbe8885be7a6a
+Proxied: true
+
+SSL/TLS: Full (strict)
+Always HTTPS: Enabled
+Auto Rewrites: Enabled
+
+Next: Deploy to VPS at 94.72.141.71
